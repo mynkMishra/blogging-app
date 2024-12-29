@@ -34,7 +34,7 @@ public class UserEntity {
 	
 	@Column(nullable = false)
 	@NonNull
-	private String usenrame;
+	private String username;
 	
 	@Column(nullable = false)
 	@NonNull

@@ -19,7 +19,7 @@ public class UserRepositoryTests {
 	@Order(1)
 	void can_create_users() {
 		var user = UserEntity.builder()
-				.usenrame("arnavgupta")
+				.username("arnavgupta")
 				.email("arnav@bloggingapp.com")
 				.password("password")
 				.build();
@@ -31,7 +31,7 @@ public class UserRepositoryTests {
 	@Order(2)
 	void can_find_users() {
 		var user = UserEntity.builder()
-				.usenrame("arnavgupta")
+				.username("arnavgupta")
 				.email("arnav@bloggingapp.com")
 				.password("password")
 				.build();
