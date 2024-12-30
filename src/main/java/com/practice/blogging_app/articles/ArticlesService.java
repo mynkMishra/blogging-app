@@ -1,5 +1,9 @@
 package com.practice.blogging_app.articles;
 
+import java.util.Optional;
+
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.practice.blogging_app.articles.dtos.CreateArticleRequestDTO;
@@ -18,8 +22,14 @@ public class ArticlesService {
 		this.articlesRepository = articlesRepository;
 	}
 
-	public Iterable<ArticleEntity> getAllArticles() {
-		return articlesRepository.findAll();
+	public Iterable<ArticleEntity> getAllArticles(int page, int size, Optional<Long> authorId) {
+		Pageable pageable = PageRequest.of(page, size); 
+		if(authorId.isEmpty()) {
+			return articlesRepository.findAll(pageable);
+		}
+		
+		// TODO: add authorId check
+		return articlesRepository.findAll(pageable);
 	}
 
 	public ArticleEntity getArticleById(Long id) {

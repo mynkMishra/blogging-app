@@ -1,25 +1,25 @@
 package com.practice.blogging_app.users;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.practice.blogging_app.users.dtos.CreateUserRequestDTO;
-import com.practice.blogging_app.users.entities.UserEntity;
+import com.practice.blogging_app.users.dtos.LoginUserRequestDTO;
 
 @Service
 public class UsersService {
 	
 	private final IUsersRepository usersRepository;
+	private final ModelMapper modelmapper;
 	
-	public UsersService(IUsersRepository usersRepository) {
+	public UsersService(IUsersRepository usersRepository, ModelMapper modelMapper) {
 		this.usersRepository = usersRepository;
+		this.modelmapper = modelMapper;
 	}
 	
 	public UserEntity createUser(CreateUserRequestDTO request) {
-		var newUser = UserEntity.builder()
-				.username(request.getUsername())
-				.password(request.getPassword())	// TODO: encrypt password
-				.email(request.getEmail())
-				.build();
+		var newUser = modelmapper.map(request, UserEntity.class);
+		// TODO: encrypt password
 		
 		return usersRepository.save(newUser);
 	}
@@ -32,11 +32,15 @@ public class UsersService {
 		return usersRepository.findById(userId).orElseThrow(() -> new UsersService.UserNotFoundException(userId));
 	}
 	
-	public UserEntity loginUser(String username, String password) {
-		var user = usersRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException(username));
+	public UserEntity loginUser(LoginUserRequestDTO request) {
+		var user = usersRepository.findByEmail(request.getEmail()).orElseThrow(() -> new UserNotFoundException(request.getEmail()));
 		
 		// TODO: match password
 		return user;
+	}
+	
+	public Iterable<UserEntity> getAllUsers(){
+		return usersRepository.findAll();
 	}
 	
 	public static class UserNotFoundException extends IllegalArgumentException {
@@ -47,5 +51,6 @@ public class UsersService {
 		public UserNotFoundException(Long authorId) {
 			super("User with id: " + authorId + " not found");
 		}
+		
 	}
 }

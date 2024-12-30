@@ -1,6 +1,5 @@
 package com.practice.blogging_app.users.dtos;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -13,11 +12,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateUserRequestDTO {
-	
-	@NonNull
-	private String username;
-	
+public class LoginUserRequestDTO {
 	@NonNull
 	private String password;
 	

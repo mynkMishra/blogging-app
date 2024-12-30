@@ -1,4 +1,4 @@
-package com.practice.blogging_app.users.entities;
+package com.practice.blogging_app.users;
 
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
@@ -24,7 +24,6 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Builder
 public class UserEntity {
 	
 	@Id

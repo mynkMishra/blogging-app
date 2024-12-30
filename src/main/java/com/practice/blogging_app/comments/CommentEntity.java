@@ -4,7 +4,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.lang.NonNull;
 
 import com.practice.blogging_app.articles.ArticleEntity;
-import com.practice.blogging_app.users.entities.UserEntity;
+import com.practice.blogging_app.users.UserEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

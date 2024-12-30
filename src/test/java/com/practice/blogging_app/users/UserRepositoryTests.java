@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.practice.blogging_app.users.entities.UserEntity;
-
 @DataJpaTest
 @ActiveProfiles("test")
 public class UserRepositoryTests {

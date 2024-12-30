@@ -1,5 +1,6 @@
 package com.practice.blogging_app.users.dtos;
 
+import org.springframework.lang.Nullable;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,14 +14,12 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateUserRequestDTO {
+public class ProfileResponseDTO {
 	
 	@NonNull
 	private String username;
-	
-	@NonNull
-	private String password;
-	
-	@NonNull
-	private String email;
+	@Nullable
+	private String bio;
+	@Nullable
+	private String image;
 }

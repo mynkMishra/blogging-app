@@ -1,6 +1,8 @@
 package com.practice.blogging_app.users.dtos;
 
+import org.springframework.lang.Nullable;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -13,14 +15,19 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateUserRequestDTO {
+public class UserResponseDTO {
+	@NonNull
+	private Long id;
 	
 	@NonNull
 	private String username;
 	
 	@NonNull
-	private String password;
-	
-	@NonNull
 	private String email;
+	
+	@Nullable
+	private String bio;
+	
+	@Nullable
+	private String image;
 }
