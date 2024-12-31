@@ -17,6 +17,8 @@ import lombok.Setter;
 public class ProfileResponseDTO {
 	
 	@NonNull
+	private String password;
+	@NonNull
 	private String username;
 	@Nullable
 	private String bio;

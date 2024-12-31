@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.practice.blogging_app.common.dtos.ErrorResponseDTO;
+import com.practice.blogging_app.users.UsersService.InvalidCredentialsException;
 import com.practice.blogging_app.users.UsersService.UserNotFoundException;
 import com.practice.blogging_app.users.dtos.CreateUserRequestDTO;
 import com.practice.blogging_app.users.dtos.LoginUserRequestDTO;
@@ -76,14 +77,17 @@ public class UsersController {
 		return ResponseEntity.ok(profile);
 	}
 	
-	@ExceptionHandler(UserNotFoundException.class)
+	@ExceptionHandler({UserNotFoundException.class, InvalidCredentialsException.class})
 	public ResponseEntity<ErrorResponseDTO> handleUserNotFoundException(Exception ex){
 		String message;
 		HttpStatus status;
 		
-		if(ex instanceof UsersService.UserNotFoundException) {
+		if(ex instanceof UserNotFoundException) {
 			message = ex.getMessage();
 			status = HttpStatus.NOT_FOUND;
+		} else if(ex instanceof InvalidCredentialsException) {
+			message = ex.getMessage();
+			status = HttpStatus.UNAUTHORIZED;
 		}else {
 			message = "Something went wrong";
 			status = HttpStatus.INTERNAL_SERVER_ERROR;
